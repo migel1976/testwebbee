@@ -19,6 +19,15 @@ document.addEventListener('DOMContentLoaded',()=>{
             e.preventDefault();
             const url=e.currentTarget.getAttribute('href');
             loadPage(url);
+            // Если неактивный элемент 
+            if (!el.target.className?.includes('active')) {
+                // Взять элемент с классом active
+                let a = document.querySelector('.active')
+                // Убрать класс active
+                a.className = a.className.replace('active', '')
+                // Добавить класс active в нажатый элемент
+                e.target.className += ' active'
+            }
 
         })
     })
