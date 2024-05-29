@@ -13,7 +13,9 @@ document.addEventListener('DOMContentLoaded',()=>{
 
             console.log(newContent);
             contentDiv.innerHTML=newContent;
-            loadMaps();
+            if(url?.includes('map')){
+                loadMaps();
+            }
 
         // ymaps.ready(init);
         // function init(){
@@ -44,20 +46,21 @@ document.addEventListener('DOMContentLoaded',()=>{
     // setTimeout(function() { 
     //     location.reload(); 
     // }, 5000); // 1000 milliseconds = 1 second 
-    const loadMaps=()=>{
-        ymaps.ready(init);
-        function init(){
-            var myMap = new ymaps.Map("ymap", {
-                center: [55.76, 37.64],
-                zoom: 7
-            });
-        }
-    };
 });
 
-let observer = new MutationObserver(mutationRecords => {
-    console.log(mutationRecords); // console.log(изменения)
-  });
+const loadMaps=()=>{
+    ymaps.ready(init);
+    function init(){
+        var myMap = new ymaps.Map("ymap", {
+            center: [55.76, 37.64],
+            zoom: 7
+        });
+    }
+};
+
+// let observer = new MutationObserver(mutationRecords => {
+//     console.log(mutationRecords); // console.log(изменения)
+//   });
   
 //   // наблюдать за всем, кроме атрибутов
 //   observer.observe(elem, {

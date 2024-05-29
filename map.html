@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- <script src="https://api-maps.yandex.ru/2.1/?apikey=5cca4bb0-3a00-417e-983f-03cb441d1b4f&lang=ru_RU" type="text/javascript"></script> -->
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
+        <nav class="nav navbar-inverse navbar-fixed-top">
+            <a class="nav-link active" href="index.html">Activity</a>
+            <a class="nav-link" href="map.html">Map</a>
+            <a class="nav-link" href="timer.html">Timer</a>
+        </nav>
         <div class="content">
             <div class="map">
                 Map
             </div>
             <!-- <div id="ymap"></div> -->
+            <div id="ymap" style="width: 600px; height: 400px"></div>
         </div>
         <script src="script.js"></script>
-        <!-- <div id="ymap" style="width: 600px; height: 400px"></div> -->
         <!-- <script src="index.js"></script> -->
         <!-- <script type="text/javascript">
             ymaps.ready(init);
