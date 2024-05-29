@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded',()=>{
+
     const contentDiv=document.querySelector('.content');
     const navLinks=document.querySelectorAll('.nav-link');
 
@@ -28,8 +29,14 @@ document.addEventListener('DOMContentLoaded',()=>{
                 // Добавить класс active в нажатый элемент
                 e.target.className += ' active'
             }
-
         })
     })
-
 });
+
+ymaps.ready(init);
+function init(){
+    var myMap = new ymaps.Map("ymap", {
+        center: [55.76, 37.64],
+        zoom: 7
+    });
+}
