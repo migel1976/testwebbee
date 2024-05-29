@@ -13,6 +13,16 @@ document.addEventListener('DOMContentLoaded',()=>{
 
             console.log(newContent);
             contentDiv.innerHTML=newContent;
+            loadMaps();
+
+        // ymaps.ready(init);
+        // function init(){
+        //     var myMap = new ymaps.Map("ymap", {
+        //         center: [55.76, 37.64],
+        //         zoom: 7
+        //     });
+        // }
+
         })
     }
     navLinks.forEach(el=>{
@@ -31,12 +41,40 @@ document.addEventListener('DOMContentLoaded',()=>{
             }
         })
     })
+    // setTimeout(function() { 
+    //     location.reload(); 
+    // }, 5000); // 1000 milliseconds = 1 second 
+    const loadMaps=()=>{
+        ymaps.ready(init);
+        function init(){
+            var myMap = new ymaps.Map("ymap", {
+                center: [55.76, 37.64],
+                zoom: 7
+            });
+        }
+    };
 });
 
-ymaps.ready(init);
-function init(){
-    var myMap = new ymaps.Map("ymap", {
-        center: [55.76, 37.64],
-        zoom: 7
-    });
-}
+let observer = new MutationObserver(mutationRecords => {
+    console.log(mutationRecords); // console.log(изменения)
+  });
+  
+//   // наблюдать за всем, кроме атрибутов
+//   observer.observe(elem, {
+//     childList: true, // наблюдать за непосредственными детьми
+//     subtree: true, // и более глубокими потомками
+//     characterDataOldValue: true // передавать старое значение в колбэк
+//   });
+
+// const loadMaps=()=>{
+//     ymaps.ready(init);
+//     function init(){
+//         var myMap = new ymaps.Map("ymap", {
+//             center: [55.76, 37.64],
+//             zoom: 7
+//         });
+//     }
+// };
+
+// вывести изменения состояния
+// document.addEventListener('readystatechange', () => console.log(document.readyState));
