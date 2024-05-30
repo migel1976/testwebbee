@@ -16,6 +16,12 @@ document.addEventListener('DOMContentLoaded',()=>{
             if(url?.includes('map')){
                 loadMaps();
             }
+            if(url?.includes('timer')){
+                var timer = setInterval(function() {
+                    console.log(showPopup());
+                    document.getElementById("time").innerHTML = showPopup();
+                }, 1000);
+            }
 
         // ymaps.ready(init);
         // function init(){
@@ -46,6 +52,12 @@ document.addEventListener('DOMContentLoaded',()=>{
     // setTimeout(function() { 
     //     location.reload(); 
     // }, 5000); // 1000 milliseconds = 1 second 
+//   if (!sessionStorage.getItem('startTime')) {
+    // sessionStorage.setItem('startTime', Date.now());
+//   }
+//   else{
+    // sessionStorage.clear();
+//   }
 });
 
 const loadMaps=()=>{
@@ -58,26 +70,35 @@ const loadMaps=()=>{
     }
 };
 
-// let observer = new MutationObserver(mutationRecords => {
-//     console.log(mutationRecords); // console.log(изменения)
-//   });
+
+
+  if (!sessionStorage.getItem('startTime')) {
+    sessionStorage.setItem('startTime', Date.now());
+  }
+  const enterTime = sessionStorage.getItem('startTime')
+  const showPopup = () => {
+    let currentTime = Date.now()
+    let spentTime = (currentTime - enterTime) / 1000
+    if (spentTime >= 60) {
+    //   clearInterval(timer)
+    //   alert(`Вы провели на сайте минут: ${Math.floor(spentTime / 60)}, секунд: ${Math.floor(spentTime % 60)}`)
+
+    const result=`Вы провели на сайте минут: ${Math.floor(spentTime / 60)}, секунд: ${Math.floor(spentTime % 60)}`
+    console.log(result)
+    return result
+    // return `Вы провели на сайте минут: ${Math.floor(spentTime / 60)}, секунд: ${Math.floor(spentTime % 60)}`
+    }
+  }
+
+// var time = setInterval(function() {
+//     var date = new Date();
+//     document.getElementById("time").innerHTML = (date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds());
+//   }, 1000);
   
-//   // наблюдать за всем, кроме атрибутов
-//   observer.observe(elem, {
-//     childList: true, // наблюдать за непосредственными детьми
-//     subtree: true, // и более глубокими потомками
-//     characterDataOldValue: true // передавать старое значение в колбэк
-//   });
-
-// const loadMaps=()=>{
-//     ymaps.ready(init);
-//     function init(){
-//         var myMap = new ymaps.Map("ymap", {
-//             center: [55.76, 37.64],
-//             zoom: 7
-//         });
-//     }
-// };
-
-// вывести изменения состояния
-// document.addEventListener('readystatechange', () => console.log(document.readyState));
+// //   const timer = setInterval(showPopup, 10000)
+//     var timer = setInterval(function() {
+//         // var date = new Date();
+//         // document.getElementById("time").innerHTML = (date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds());
+//         console.log(showPopup());
+//         document.getElementById("time").innerHTML = showPopup();
+//     }, 1000);
