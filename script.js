@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             document.title=doc.title;
             setTimeout(() => {
                 contentDiv.classList.remove('fade-out');
-                history.pushState({}, '', url);
+                // history.pushState({}, '', url);
                 hideLoadingOverlay();
             }, 500);
             if(url?.includes('map')){
@@ -49,9 +49,9 @@ document.addEventListener('DOMContentLoaded',()=>{
         })
     })
     loadPage(window.location.pathname);
-    window.addEventListener('popstate', ()=>{
-        loadPage(window.location.pathname);
-    })
+    // window.addEventListener('popstate', ()=>{
+    //     loadPage(window.location.pathname);
+    // })
 });
 
 const loadMaps=()=>{
