@@ -5,9 +5,11 @@ body{
 .block{
   /* background-color: #ddd; */
   background: #FAFAFA;
-
   border: solid 1px #aaa;
+
+  padding-top: 20px;
   padding: 20px;
+
   text-align: center;
   height: 100%;
 }
@@ -27,9 +29,27 @@ body{
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+    /* height: 40px; */
   }
 
   .active {
     background: #F1F1F1;
     /* background-color: green; */
+  }
+
+  .navright{
+    /* text-align: right; */
+    width:70%;
+    display:flex;
+    justify-content:flex-end;
+  }
+
+  .header{
+    /* height: 40px; */
+    padding-bottom: 20px;
+  }
+
+  .fixed{
+    /* width: 300px; */
+    height: 600px;
   }
