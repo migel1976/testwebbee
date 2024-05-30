@@ -17,12 +17,10 @@ body{
     color:red;
 }
 .nav-link{
-    /* background-color: #4CAF50; */
     background: #FAFAFA;
     border: none;
-    /* color: white; */
     color: black; 
-    padding: 15px 32px;
+    /* padding: 15px 32px; */
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -34,22 +32,18 @@ body{
 
   .active {
     background: #F1F1F1;
-    /* background-color: green; */
   }
 
   .navright{
-    /* text-align: right; */
     width:70%;
     display:flex;
     justify-content:flex-end;
   }
 
   .header{
-    /* height: 40px; */
     padding-bottom: 20px;
   }
 
   .fixed{
-    /* width: 300px; */
     height: 400px;
   }
