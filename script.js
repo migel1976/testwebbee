@@ -4,16 +4,32 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     const contentDiv=document.querySelector('.content');
     const navLinks=document.querySelectorAll('.nav-link');
+    const loadingOverlay=document.querySelector('.loading-overlay');
+
+    const showLoadingOverlay=()=>{
+        loadingOverlay.style.opacity='1';
+    }
+    const hideLoadingOverlay=()=>{
+        loadingOverlay.style.opacity='0';
+    }
 
     const loadPage=(url)=>{
+        showLoadingOverlay();
         fetch(url)
         .then(response=>response.text())
         .then(html=>{
             const parser=new DOMParser();
             const doc=parser.parseFromString(html, 'text/html');
             const newContent=doc.querySelector('.content').innerHTML;
+            contentDiv.classList.add('fade-out');
 
             contentDiv.innerHTML=newContent;
+            document.title=doc.title;
+            setTimeout(() => {
+                contentDiv.classList.remove('fade-out');
+                history.pushState({}, '', url);
+                hideLoadingOverlay();
+            }, 500);
             if(url?.includes('map')){
                 loadMaps();
             }
@@ -23,17 +39,18 @@ document.addEventListener('DOMContentLoaded',()=>{
         el.addEventListener('click', (e)=>{
             e.preventDefault();
             const url=e.currentTarget.getAttribute('href');
+            showLoadingOverlay();
             loadPage(url);
-            // Если неактивный элемент 
             if (!el.target.className?.includes('active')) {
-                // Взять элемент с классом active
                 let a = document.querySelector('.active')
-                // Убрать класс active
                 a.className = a.className.replace('active', '')
-                // Добавить класс active в нажатый элемент
                 e.target.className += ' active'
             }
         })
+    })
+    loadPage(window.location.pathname);
+    window.addEventListener('popstate', ()=>{
+        loadPage(window.location.pathname);
     })
 });
 
@@ -54,9 +71,7 @@ const loadMaps=()=>{
                 preset: 'islands#greenDotIconWithCaption'
             }))
     }
-    
 };
-
 
 
   if (!sessionStorage.getItem('startTime')) {
