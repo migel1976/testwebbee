@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded',()=>{
             const doc=parser.parseFromString(html, 'text/html');
             const newContent=doc.querySelector('.content').innerHTML;
 
-            // console.log(newContent);
             contentDiv.innerHTML=newContent;
             if(url?.includes('map')){
                 loadMaps();
@@ -25,7 +24,6 @@ document.addEventListener('DOMContentLoaded',()=>{
             e.preventDefault();
             const url=e.currentTarget.getAttribute('href');
             loadPage(url);
-            // console.log('navLinks.forEach',url);
             // Если неактивный элемент 
             if (!el.target.className?.includes('active')) {
                 // Взять элемент с классом active
@@ -51,8 +49,7 @@ const loadMaps=()=>{
     
         myMap.geoObjects
             .add(new ymaps.Placemark([56.727527, 37.144348] , {
-                balloonContent: 'цвет <strong>носика Гены</strong>',
-                iconCaption: 'здесь я живу'
+                iconCaption: 'Я здесь живу'
             }, {
                 preset: 'islands#greenDotIconWithCaption'
             }))
@@ -69,11 +66,9 @@ const loadMaps=()=>{
   const showPopup = () => {
     let currentTime = Date.now()
     let spentTime = (currentTime - enterTime) / 1000
-    // if (spentTime >= 60) {
         const result=`Вы провели на сайте минут: ${Math.floor(spentTime / 60)}, секунд: ${Math.floor(spentTime % 60)}`
         // console.log(result)
         return result
-    // }
   }
 
     var timer = setInterval(function() {
