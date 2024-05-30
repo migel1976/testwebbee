@@ -40,15 +40,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 
 const loadMaps=()=>{
-    // ymaps.ready(init);
-    // function init(){
-    //     var myMap = new ymaps.Map("ymap", {
-    //         center: [55.76, 37.64],
-    //         zoom: 7
-    //     });
-    // }
     ymaps.ready(init);
-
     function init() {
         var myMap = new ymaps.Map("ymap", {
                 center: [56.746755, 37.115564],
