@@ -16,12 +16,6 @@ document.addEventListener('DOMContentLoaded',()=>{
             if(url?.includes('map')){
                 loadMaps();
             }
-            // var timer = setInterval(function() {
-            //     console.log(showPopup());
-            //     if(url?.includes('timer')){
-            //         console.log(url);
-            //         document.getElementById("time").innerHTML = showPopup();};
-            // }, 1000);
         })
     }
     navLinks.forEach(el=>{
@@ -30,12 +24,6 @@ document.addEventListener('DOMContentLoaded',()=>{
             const url=e.currentTarget.getAttribute('href');
             loadPage(url);
             console.log('navLinks.forEach',url);
-            // var timer = setInterval(function() {
-            //     console.log(showPopup());
-            //     if(url?.includes('timer')){
-            //         console.log(url);
-            //         document.getElementById("time").innerHTML = showPopup();};
-            // }, 1000);
             // Если неактивный элемент 
             if (!el.target.className?.includes('active')) {
                 // Взять элемент с классом active
@@ -76,16 +64,9 @@ const loadMaps=()=>{
     }
   }
 
-// var time = setInterval(function() {
-//     var date = new Date();
-//     document.getElementById("time").innerHTML = (date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds());
-//   }, 1000);
-  
-// //   const timer = setInterval(showPopup, 10000)
     var timer = setInterval(function() {
         console.log(showPopup());
-        // document.getElementById("time").innerHTML = showPopup();
         if(document.querySelector('.mytimer')!==null){
             document.querySelector('.mytimer').innerHTML=showPopup();
         }
-    }, 2000);
+    }, 1000);
