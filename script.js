@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded',()=>{
 
+    sessionStorage.clear();
+
     const contentDiv=document.querySelector('.content');
     const navLinks=document.querySelectorAll('.nav-link');
 
@@ -56,12 +58,11 @@ const loadMaps=()=>{
   const showPopup = () => {
     let currentTime = Date.now()
     let spentTime = (currentTime - enterTime) / 1000
-    if (spentTime >= 60) {
-    //   clearInterval(timer)
-    const result=`Вы провели на сайте минут: ${Math.floor(spentTime / 60)}, секунд: ${Math.floor(spentTime % 60)}`
-    console.log(result)
-    return result
-    }
+    // if (spentTime >= 60) {
+        const result=`Вы провели на сайте минут: ${Math.floor(spentTime / 60)}, секунд: ${Math.floor(spentTime % 60)}`
+        console.log(result)
+        return result
+    // }
   }
 
     var timer = setInterval(function() {
