@@ -13,6 +13,12 @@ document.addEventListener('DOMContentLoaded',()=>{
         loadingOverlay.style.opacity='0';
     }
 
+    const loadScripts=(url)=>{
+        if(url?.includes('map')){
+            loadMaps();
+        }
+    }
+
     const loadPage=(url)=>{
         showLoadingOverlay();
         fetch(url)
@@ -30,9 +36,12 @@ document.addEventListener('DOMContentLoaded',()=>{
                 // history.pushState({}, '', url);
                 hideLoadingOverlay();
             }, 500);
-            if(url?.includes('map')){
-                loadMaps();
-            }
+            // if(url?.includes('map')){
+            //     loadMaps();
+            // }
+        })
+        .then(()=>{
+            loadScripts(url);
         })
     }
     navLinks.forEach(el=>{
