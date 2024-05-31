@@ -31,12 +31,8 @@ document.addEventListener('DOMContentLoaded',()=>{
             document.title=doc.title;
             setTimeout(() => {
                 contentDiv.classList.remove('fade-out');
-                // history.pushState({}, '', url);
-                // history.pushState({newContent}, document.title, url);
                 hideLoadingOverlay();
             }, 500);
-            let state={page: newContent};
-            history.pushState(state, document.title, url);
         })
         .then(()=>{
             loadScripts(url);
@@ -46,13 +42,13 @@ document.addEventListener('DOMContentLoaded',()=>{
         el.addEventListener('click', (e)=>{
             e.preventDefault();
             const url=e.currentTarget.getAttribute('href');
-            // showLoadingOverlay();
             loadPage(url);
             if (!el.target.className?.includes('active')) {
                 let a = document.querySelector('.active')
                 a.className = a.className.replace('active', '')
                 e.target.className += ' active'
             }
+            history.pushState({}, '', url);
         })
     })
     loadPage(window.location.pathname);
