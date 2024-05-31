@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded',()=>{
 
-    sessionStorage.clear();
-
     const contentDiv=document.querySelector('.content');
     const navLinks=document.querySelectorAll('.nav-link');
     const loadingOverlay=document.querySelector('.loading-overlay');
@@ -34,11 +32,11 @@ document.addEventListener('DOMContentLoaded',()=>{
             setTimeout(() => {
                 contentDiv.classList.remove('fade-out');
                 // history.pushState({}, '', url);
+                // history.pushState({newContent}, document.title, url);
                 hideLoadingOverlay();
             }, 500);
-            // if(url?.includes('map')){
-            //     loadMaps();
-            // }
+            let state={page: newContent};
+            history.pushState(state, document.title, url);
         })
         .then(()=>{
             loadScripts(url);
@@ -48,7 +46,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         el.addEventListener('click', (e)=>{
             e.preventDefault();
             const url=e.currentTarget.getAttribute('href');
-            showLoadingOverlay();
+            // showLoadingOverlay();
             loadPage(url);
             if (!el.target.className?.includes('active')) {
                 let a = document.querySelector('.active')
@@ -58,9 +56,9 @@ document.addEventListener('DOMContentLoaded',()=>{
         })
     })
     loadPage(window.location.pathname);
-    // window.addEventListener('popstate', ()=>{
-    //     loadPage(window.location.pathname);
-    // })
+    window.addEventListener('popstate', ()=>{
+        loadPage(window.location.pathname);
+    })
 });
 
 const loadMaps=()=>{
@@ -82,22 +80,16 @@ const loadMaps=()=>{
     }
 };
 
+const enterTime=Date.now();
+const showPopup = () => {
+let currentTime = Date.now()
+let spentTime = (currentTime - enterTime) / 1000
+    const result=`Вы провели на сайте минут: ${Math.floor(spentTime / 60)}, секунд: ${Math.floor(spentTime % 60)}`
+    return result
+}
 
-  if (!sessionStorage.getItem('startTime')) {
-    sessionStorage.setItem('startTime', Date.now());
-  }
-  const enterTime = sessionStorage.getItem('startTime')
-  const showPopup = () => {
-    let currentTime = Date.now()
-    let spentTime = (currentTime - enterTime) / 1000
-        const result=`Вы провели на сайте минут: ${Math.floor(spentTime / 60)}, секунд: ${Math.floor(spentTime % 60)}`
-        // console.log(result)
-        return result
-  }
-
-    var timer = setInterval(function() {
-        // console.log(showPopup());
-        if(document.querySelector('.mytimer')!==null){
-            document.querySelector('.mytimer').innerHTML=showPopup();
-        }
-    }, 1000);
+var timer = setInterval(function() {
+    if(document.querySelector('.mytimer')!==null){
+        document.querySelector('.mytimer').innerHTML=showPopup();
+    }
+}, 1000);

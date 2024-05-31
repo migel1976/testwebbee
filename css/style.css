@@ -55,8 +55,7 @@
     visibility: hidden;
   }
 
-
-
-  .menucaption{
-    /* padding-right: 3px; */
+  #ymap{
+    width: 1200px;
+    height: 400px;
   }
